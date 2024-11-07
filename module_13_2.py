@@ -2,19 +2,19 @@ from aiogram import Bot, Dispatcher, executor, types
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 
 
-api = "..."
+api = "7374724689:AAE7FraX7jq8h1vuOPvZTo01AZGeN5EBNPQ"
 bot = Bot(token=api)
 dp = Dispatcher(bot, storage=MemoryStorage())
 
 
 @dp.message_handler(commands=['start'])
-async def start(message: types.Message):
-    await message.answer('Привет! Я бот, помогающий твоему здоровью.')
+async def start(message):
+    print('Привет! Я бот, помогающий твоему здоровью.')
 
 
-@dp.message_handler(content_types=types.ContentTypes.TEXT)
-async def all_messages(message: types.Message):
-    await message.answer('Введите команду /start, чтобы начать общение.')
+@dp.message_handler()
+async def all_messages(message):
+    print('Введите команду /start, чтобы начать общение.')
 
 
 if __name__ == "__main__":

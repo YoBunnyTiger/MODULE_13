@@ -14,13 +14,13 @@ button_info = KeyboardButton(text='Информация')
 kb.add(button_calc)
 kb.add(button_info)
 inline_keyboard = InlineKeyboardMarkup(row_width=1)
-male_keyboard = InlineKeyboardMarkup(row_width=1)
+gender_keyboard = InlineKeyboardMarkup(row_width=1)
 button_calories = InlineKeyboardButton("Рассчитать норму калорий", callback_data='calories')
 button_formulas = InlineKeyboardButton("Формулы расчёта", callback_data='formulas')
 button_male = InlineKeyboardButton("Мужской", callback_data='male')
 button_female = InlineKeyboardButton("Женский", callback_data='female')
 inline_keyboard.add(button_calories, button_formulas)
-male_keyboard.add(button_male, button_female)
+gender_keyboard.add(button_male, button_female)
 
 
 @dp.message_handler(commands=['start'])
@@ -53,7 +53,7 @@ async def get_formulas(call):
 
 @dp.callback_query_handler(text='calories')
 async def set_gender(call: types.CallbackQuery):
-    await call.message.answer('Выберите ваш пол:', reply_markup=male_keyboard)
+    await call.message.answer('Выберите ваш пол:', reply_markup=gender_keyboard)
     await UserState.gender.set()
 
 
